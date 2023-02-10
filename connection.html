@@ -1,12 +1,13 @@
-<form id="connection">
-  <img class="mb-4" src="" alt="" width="72" height="57" />
+<script src="./sources/js/script.js"></script>
+<img class="mb-4" src="" alt="" width="72" height="57" />
   <h1 class="h3 mb-3 fw-normal">Merci de vous connecter</h1>
+  <p id="loginError"></p>
 
   <div class="form-floating">
     <input
       type="email"
       class="form-control"
-      id="floatingInput"
+      id="loginEmail"
       placeholder="nom@example.com"
     />
   </div>
@@ -14,10 +15,9 @@
     <input
       type="password" 
       class="form-control"
-      id="floatingPassword"
+      id="loginPassword"
       placeholder="Mot de passe"
     />
   </div>
-  <button class="w-100 btn btn-lg btn-primary" type="submit">Connection</button>
+  <button onclick="login()" class="w-100 btn btn-lg btn-primary" id="loginButton">Connection</button>
   <p class="mt-5 mb-3 text-muted">&copy; 2023</p>
-</form>
