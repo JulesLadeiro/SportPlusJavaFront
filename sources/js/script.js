@@ -33,6 +33,7 @@ const loadIndexDatas = async () => {
                       <h5 class="card-title">${product.productname}</h5>
                       <p class="card-text">${product.description}</p>
                       <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <span>${product.price}€</span>
                     </div>
                   </div>`;
                 }
