@@ -85,14 +85,108 @@
                         <h1 class="h2">Gestion de produit</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <div class="btn-group me-2">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">add</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">remove</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">modify</button>
+                                <button type="button" class="btn btn-sm btn-success">Ajouter</button>
                             </div>
                         </div>
                     </div>
-                    <div class="content container">
-                        ici formulaire
+                    <div class="container form_product">
+                        <h1 class="h3 mb-3 fw-normal">Création de produit</h1>
+                        <div class="row g-3">
+                            <div class="col-12">
+                              <div class="input-group has-validation">                               
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="productname"
+                                  placeholder="Nom du produit"
+                                  required
+                                />
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <input
+                              type="text"
+                              class="form-control"
+                              id="price"
+                              placeholder="prix"
+                              required
+                              />
+                            </div>
+                            <div class="col-12">
+                              <input
+                              type="text"
+                              class="form-control"
+                              id="signupUsername"
+                              placeholder="Username"
+                              required
+                              />
+                            </div>
+                          </div>
+                          <button onclick="signup()" id="signupButton" class="w-100 btn btn-primary btn-lg mt-3">
+                            Créer
+                          </button>
+                    </div>
+                    <div class="container form_Modifproduct">
+                        <h1 class="h3 mb-3 fw-normal">Modification de produit</h1>
+                        <div class="row g-3">
+                            <div class="col-12">
+                              <div class="input-group has-validation">                               
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="productname"
+                                  placeholder="Nom du produit"
+                                  required
+                                />
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <input
+                              type="text"
+                              class="form-control"
+                              id="price"
+                              placeholder="prix"
+                              required
+                              />
+                            </div>
+                            <div class="col-12">
+                              <input
+                              type="text"
+                              class="form-control"
+                              id="signupUsername"
+                              placeholder="Username"
+                              required
+                              />
+                            </div>
+                          </div>
+                          <button onclick="signup()" id="signupButton" class="w-100 btn btn-primary btn-lg mt-3">
+                            Modifier
+                          </button>
+                    </div>
+                    <div class="recap_product mt-2 container">
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col"># id</th>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Produit</th>
+                                <th scope="col">Shop</th>
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Nom</td>
+                                <td>Ref</td>
+                                <td>Shop</td>
+                                <td><div class="btn-group d-flex justify-content-center">
+                                    <button type="button" class="btn btn-sm btn-warning">Modifier</button>
+                                    <button type="button" class="btn btn-sm btn-danger">Supprimer</button>
+                                </div></td>
+                              </tr>                             
+                            </tbody>
+                          </table>
                     </div>
                 </main>
             </div>
