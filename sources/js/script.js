@@ -3,6 +3,8 @@ const url = "http://localhost:8080";
 document.addEventListener("DOMContentLoaded", () => {
     if (window.location.pathname.startsWith("/index")) {
         loadIndexDatas();
+    } else if (window.location.pathname.startsWith("/productpage")) {
+        loadProduct();
     }
 });
 
@@ -20,27 +22,49 @@ const loadIndexDatas = async () => {
 
     catalogue.forEach(catalogue => {
         const newCatalogueDiv = document.createElement('div');
-        newCatalogueDiv.className = 'row';
-        newCatalogueDiv.innerHTML = `<div class="col-12 mt-3"></div>
+        newCatalogueDiv.className = 'row mt-3';
+        newCatalogueDiv.innerHTML = `
         <h2>${catalogue.name}</h2>
         <hr class="mb-4 mt-0 d-inline-block mx-auto shop_name" />
-        <section>
+        <div class = "row">
             ${products.map(product => {
-                if (product.catalogueid == catalogue.id) {
-                    return `<div class="card" style="width: 18rem;">
+            if (product.catalogueid == catalogue.id) {
+                return `<div class="card col-4 mx-3" style="width: 18rem;">
                     <img class="card-img-top" src="${product.picture}" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">${product.productname}</h5>
                       <p class="card-text">${product.description}</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <a href="productpage?id=${product.id}" class="btn btn-primary">Acheter</a>
                       <span>${product.price}€</span>
                     </div>
                   </div>`;
-                }
-            }).join('')}
-        </section>`;
+            }
+        }).join('')}
+        </div   >`;
         catalogueDiv.appendChild(newCatalogueDiv);
     })
+}
+
+const loadProduct = async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    const response = await fetch(`${url}/product/${id}`);
+    const product = await response.json();
+
+    const productDiv = document.getElementById('product');
+    productDiv.innerHTML = `<div class="col-4 d-flex justify-content-center">
+        <img class="product_image" src="${product.picture}" alt="">
+    </div>
+    <div class="col-4">
+        <div class="row pt-5">
+            <div class="col-12 mb-2"><h3>${product.productname}</h3></div>
+        <div class="col-12 mb-2">
+            <p>${product.description}</p>
+        </div>
+            <div class="col-12"><h5>${product.price} €</h5> </div>
+        </div>
+    </div>`;
 }
 
 const signup = async () => {
