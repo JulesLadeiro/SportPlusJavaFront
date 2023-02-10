@@ -1,10 +1,21 @@
 const url = "http://localhost:8080";
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (window.location.pathname.startsWith("/index")) {
-        loadIndexDatas();
-    } else if (window.location.pathname.startsWith("/productpage")) {
-        loadProduct();
+    const authenticated = localStorage.getItem("user") != null;
+
+    switch (true) {
+        case window.location.pathname.includes("/signout"):
+        case authenticated && !(window.location.pathname.includes("/login") || !authenticated && window.location.pathname.includes("/signup")):
+            if (authenticated) localStorage.removeItem("user");
+            window.location.href = "/login";
+        case window.location.pathname.includes("/index"):
+            loadIndexDatas();
+            break;
+        case window.location.pathname.includes("/productpage"):
+            loadProduct();
+            break;
+        default:
+            break;
     }
 });
 
