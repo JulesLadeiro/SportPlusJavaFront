@@ -32,6 +32,11 @@
   border-radius: 10px;
 }
 
+.product_image {
+  width: 300px;
+  height: 300px;
+}
+
 .bar-menu {
   display: flex;
   justify-content: space-evenly;
