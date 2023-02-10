@@ -4,6 +4,34 @@
   --color-tertiary: rgb(197, 197, 198);
 }
 
+.social_background {
+  width: 60px;
+  background-color: #7c4dff;
+  height: 2px
+}
+
+.social_description {
+  width: 60px;
+  background-color: #7c4dff;
+  height: 2px
+}
+
+.social_account {
+  width: 60px;
+  background-color: #7c4dff;
+  height: 2px
+}
+
+.social_contact {
+  width: 60px;
+  background-color: #7c4dff;
+  height: 2px
+}
+
+.product_image {
+  border-radius: 10px;
+}
+
 .bar-menu {
   display: flex;
   justify-content: space-evenly;
@@ -36,11 +64,15 @@
 .nav-link {
   color: var(--color-secondary);
 }
+
 .nav-link:hover {
   color: var(--color-primary);
 }
 
 @media (max-width: 976px) {
+  .navbar-brand {
+    display: none;
+  }
   .topbar {
     display: none;
   }
