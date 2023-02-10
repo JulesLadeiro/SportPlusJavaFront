@@ -28,7 +28,7 @@
   height: 2px
 }
 
-.product_image {
+.product_image, .login_img {
   border-radius: 10px;
 }
 
