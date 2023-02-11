@@ -1,18 +1,20 @@
-const url = "http://localhost:8080";
+// const url = "http://localhost:8080"; // local
+const url = "https://sportplus.alwaysdata.net"; // prod
 
 document.addEventListener("DOMContentLoaded", () => {
-    const authenticated = localStorage.getItem("user") != null;
+    const authenticated = localStorage.getItem("user") ?? false;
 
     switch (true) {
-        case window.location.pathname.includes("/signout"):
-        case authenticated && !(window.location.pathname.includes("/login") || !authenticated && window.location.pathname.includes("/signup")):
+        case window.location.pathname.includes("/logout"):
+        case authenticated === false && !(window.location.pathname.includes("/connection") || window.location.pathname.includes("/inscription")):
+            window.location.href = "/connection";
+        case window.location.pathname.includes("/connection") || window.location.pathname.includes("/inscription"):
             if (authenticated) localStorage.removeItem("user");
-            window.location.href = "/login";
-        case window.location.pathname.includes("/index"):
-            loadIndexDatas();
-            break;
         case window.location.pathname.includes("/productpage"):
             loadProduct();
+            break;
+        case window.location.pathname.includes("/index") || window.location.pathname == "/":
+            loadIndexDatas();
             break;
         default:
             break;
@@ -27,7 +29,6 @@ const loadIndexDatas = async () => {
 
     const catalogue = await res1.json();
     const products = await res2.json();
-    console.log(catalogue, products);
 
     const catalogueDiv = document.getElementById('container');
 
