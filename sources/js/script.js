@@ -100,7 +100,7 @@ const signup = async () => {
         })
     });
 
-    window.location.href = `${baseUrl}connection`;
+    window.location.href = `${baseUrl}/connection`;
 }
 
 const login = async () => {
@@ -129,9 +129,9 @@ const login = async () => {
         } else {
             localStorage.setItem('user', JSON.stringify(rightUser));
             if (rightUser.role === "CLIENT") {
-                return window.location.href = `${baseUrl}admin`;
+                return window.location.href = `${baseUrl}/admin`;
             }
-            return window.location.href = `${baseUrl}index`;
+            return window.location.href = `${baseUrl}/index`;
         }
     }
 
