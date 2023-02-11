@@ -1,19 +1,21 @@
 // const url = "http://localhost:8080"; // local
 const url = "https://sportplus.alwaysdata.net"; // prod
+const isProd = true;
+const baseUrl = isProd ? "/SportPlusJavaFront" : "";
 
 document.addEventListener("DOMContentLoaded", () => {
     const authenticated = localStorage.getItem("user") ?? false;
 
     switch (true) {
-        case window.location.pathname.includes("/logout"):
-        case authenticated === false && !(window.location.pathname.includes("/connection") || window.location.pathname.includes("/inscription")):
-            window.location.href = "/connection";
-        case window.location.pathname.includes("/connection") || window.location.pathname.includes("/inscription"):
+        case window.location.pathname.includes(`${baseUrl}/logout`):
+        case authenticated === false && !(window.location.pathname.includes(`${baseUrl}/connection`) || window.location.pathname.includes(`${baseUrl}/inscription`)):
+            window.location.href = `${baseUrl}/connection`;
+        case window.location.pathname.includes(`${baseUrl}/connection`) || window.location.pathname.includes(`${baseUrl}/inscription`):
             if (authenticated) localStorage.removeItem("user");
-        case window.location.pathname.includes("/productpage"):
+        case window.location.pathname.includes(`${baseUrl}/productpage`):
             loadProduct();
             break;
-        case window.location.pathname.includes("/index") || window.location.pathname == "/":
+        case window.location.pathname.includes(`${baseUrl}/index`) || window.location.pathname == `${baseUrl}/`:
             loadIndexDatas();
             break;
         default:
@@ -98,7 +100,7 @@ const signup = async () => {
         })
     });
 
-    window.location.href = "connection.html";
+    window.location.href = `${baseUrl}connection`;
 }
 
 const login = async () => {
@@ -127,9 +129,9 @@ const login = async () => {
         } else {
             localStorage.setItem('user', JSON.stringify(rightUser));
             if (rightUser.role === "CLIENT") {
-                return window.location.href = "admin.html";
+                return window.location.href = `${baseUrl}admin`;
             }
-            return window.location.href = "index.html";
+            return window.location.href = `${baseUrl}index`;
         }
     }
 
