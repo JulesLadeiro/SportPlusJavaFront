@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +10,7 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-    </script>
+        </script>
     <link href="sources/css/style.css" rel="stylesheet" />
     <script src="sources/js/script.js"></script>
 </head>
@@ -66,7 +67,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="index">
                                     <span data-feather="home" class="align-text-bottom"></span>
-                                    Mon site
+                                    Catalogues
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -85,108 +86,26 @@
                         <h1 class="h2">Gestion de produit</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <div class="btn-group me-2">
-                                <button type="button" class="btn btn-sm btn-success">Ajouter</button>
+                                <button onclick="createMyProductInt()" type="button" class="btn btn-sm btn-success">Ajouter</button>
                             </div>
                         </div>
                     </div>
-                    <div class="container form_product">
-                        <h1 class="h3 mb-3 fw-normal">Création de produit</h1>
-                        <div class="row g-3">
-                            <div class="col-12">
-                              <div class="input-group has-validation">                               
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="productname"
-                                  placeholder="Nom du produit"
-                                  required
-                                />
-                              </div>
-                            </div>
-                            <div class="col-12">
-                              <input
-                              type="text"
-                              class="form-control"
-                              id="price"
-                              placeholder="prix"
-                              required
-                              />
-                            </div>
-                            <div class="col-12">
-                              <input
-                              type="text"
-                              class="form-control"
-                              id="signupUsername"
-                              placeholder="Username"
-                              required
-                              />
-                            </div>
-                          </div>
-                          <button onclick="signup()" id="signupButton" class="w-100 btn btn-primary btn-lg mt-3">
-                            Créer
-                          </button>
-                    </div>
-                    <div class="container form_Modifproduct">
-                        <h1 class="h3 mb-3 fw-normal">Modification de produit</h1>
-                        <div class="row g-3">
-                            <div class="col-12">
-                              <div class="input-group has-validation">                               
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="productname"
-                                  placeholder="Nom du produit"
-                                  required
-                                />
-                              </div>
-                            </div>
-                            <div class="col-12">
-                              <input
-                              type="text"
-                              class="form-control"
-                              id="price"
-                              placeholder="prix"
-                              required
-                              />
-                            </div>
-                            <div class="col-12">
-                              <input
-                              type="text"
-                              class="form-control"
-                              id="signupUsername"
-                              placeholder="Username"
-                              required
-                              />
-                            </div>
-                          </div>
-                          <button onclick="signup()" id="signupButton" class="w-100 btn btn-primary btn-lg mt-3">
-                            Modifier
-                          </button>
-                    </div>
+                    <div id="crud"> </div>
                     <div class="recap_product mt-2 container">
                         <table class="table table-striped">
                             <thead>
-                              <tr>
-                                <th scope="col"># id</th>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Produit</th>
-                                <th scope="col">Shop</th>
-                                <th scope="col"></th>
-                              </tr>
+                                <tr>
+                                    <th scope="col"># id</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Produit</th>
+                                    <th scope="col">Shop</th>
+                                    <th scope="col"></th>
+                                </tr>
                             </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Nom</td>
-                                <td>Ref</td>
-                                <td>Shop</td>
-                                <td><div class="btn-group d-flex justify-content-center">
-                                    <button type="button" class="btn btn-sm btn-warning">Modifier</button>
-                                    <button type="button" class="btn btn-sm btn-danger">Supprimer</button>
-                                </div></td>
-                              </tr>                             
+                            <tbody id="prodTable">
+
                             </tbody>
-                          </table>
+                        </table>
                     </div>
                 </main>
             </div>
