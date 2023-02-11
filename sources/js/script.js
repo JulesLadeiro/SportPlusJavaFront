@@ -1,6 +1,6 @@
-const url = "http://localhost:8080"; // local
-// const url = "https://sportplus.alwaysdata.net"; // prod
-const isProd = false;
+// const url = "http://localhost:8080"; // local
+const url = "https://sportplus.alwaysdata.net"; // prod
+const isProd = true;
 const baseUrl = isProd ? "/SportPlusJavaFront" : "";
 
 document.addEventListener("DOMContentLoaded", () => {
