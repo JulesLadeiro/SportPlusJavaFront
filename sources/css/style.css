@@ -6,7 +6,7 @@
 
 .social_background {
   width: 60px;
-  background-color: #7c4dff;
+  background-color: var(--color-primary);
   height: 2px
 }
 
