@@ -265,7 +265,8 @@ const editMyProduct = async (id) => {
         const res = await fetch(`${url}/product/${id}`, {
             method: 'UPDATE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify(dataToPost)
         });
