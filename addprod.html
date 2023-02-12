@@ -19,9 +19,9 @@
     <div class="content">
         <header class="navbar admin_nav navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="index">Sport +</a>
-            <button class="navbar-toggler navbaradmin position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler navbaradmin position-absolute d-md-none collapsed" type="button"
+                data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
+                aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-nav">
@@ -48,29 +48,9 @@
                                     <span data-feather="file-text" class="align-text-bottom"></span>
                                     Mon compte
                                 </a>
-                            </li>                        
-                        </ul>
-                        <h6
-                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-                            <span>Gestion du Store</span>
-                            <a class="link-secondary" href="#" aria-label="Add a new report">
-                                <span data-feather="plus-circle" class="align-text-bottom"></span>
-                            </a>
-                        </h6>
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index">
-                                    <span data-feather="home" class="align-text-bottom"></span>
-                                    Catalogues
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="addprod">
-                                    <span data-feather="file" class="align-text-bottom text-secondary"></span>
-                                    Gestion de produit
-                                </a>
                             </li>
                         </ul>
+                        <div id="store"></div>
                         <ul class="logout_menu nav flex-column">
                             <li class="nav-item">
                                 <a href="logout" class="nav-link">
@@ -87,7 +67,8 @@
                         <h1 class="h2">Gestion de produit</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <div class="btn-group me-2">
-                                <button onclick="createMyProductInt()" type="button" class="btn btn-sm btn-success">Ajouter</button>
+                                <button onclick="createMyProductInt()" type="button"
+                                    class="btn btn-sm btn-success">Ajouter</button>
                             </div>
                         </div>
                     </div>
@@ -96,10 +77,10 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col"># id</th>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Produit</th>
-                                    <th scope="col">Shop</th>
+                                    <th scope="col">Prix</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
