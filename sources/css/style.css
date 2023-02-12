@@ -114,9 +114,6 @@
 }
 
 @media (min-width: 768px) {
-  .product_card{
-    margin-bottom: 1rem !important;
-  }
 
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
