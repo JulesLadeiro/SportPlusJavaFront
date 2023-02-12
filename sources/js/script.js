@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
             break;
         case window.location.pathname.includes(`${baseUrl}/account`):
             checkStoreStatus();
+            loadAccount();
             break;
         case window.location.pathname.includes(`${baseUrl}/addprod`):
             checkStoreStatus();
@@ -34,6 +35,53 @@ document.addEventListener("DOMContentLoaded", () => {
             break;
     }
 });
+
+const loadAccount = () => {
+    const account = JSON.parse(localStorage.getItem("user"));
+    document.getElementById('editUsername').value = account.username;
+};
+
+const editAccount = async () => {
+    const editBtn = document.getElementById('editBtn');
+    editBtn.disabled = true;
+    const name = document.getElementById('editUsername').value;
+    const password = document.getElementById('editPassword').value;
+
+    if (password.length == 0) {
+        const info = document.getElementById('inf');
+        info.innerHTML = 'Veuillez renseigner un mot de passe.';
+        editBtn.disabled = false;
+        return;
+    }
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    
+    const data = {
+        ...user,
+        username: name,
+        password
+    };
+    
+    const response = await fetch(`${url}/user`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    const res = await response.json();
+
+    if (res) {
+        localStorage.setItem('user', JSON.stringify(data));
+        const info = document.getElementById('inf');
+        info.innerHTML = 'Vos informations ont bien été modifiées !';
+    } else {
+        const info = document.getElementById('inf');
+        info.innerHTML = 'Une erreur est survenue, veuillez réessayer.'
+    }
+    
+    editBtn.disabled = false;
+};
 
 const loadIndexDatas = async () => {
     const res1 = await fetch(`${url}/catalogue`);
@@ -265,7 +313,7 @@ const editMyProduct = async (id) => {
         };
 
         const res = await fetch(`${url}/product/${id}`, {
-            method: 'UPDATE',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
