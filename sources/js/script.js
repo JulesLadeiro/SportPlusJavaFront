@@ -46,7 +46,7 @@ const loadIndexDatas = async () => {
         <div class = "row">
             ${products.map(product => {
             if (product.catalogueid == catalogue.id) {
-                return `<div class="card col-4 mx-3" style="width: 18rem;">
+                return `<div class="card product_card col-lg-4 col-md-12 mx-3" style="width: 18rem;">
                     <img class="card-img-top" src="${product.picture}" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">${product.productname}</h5>
@@ -70,10 +70,10 @@ const loadProduct = async () => {
     const product = await response.json();
 
     const productDiv = document.getElementById('product');
-    productDiv.innerHTML = `<div class="col-4 d-flex justify-content-center">
+    productDiv.innerHTML = `<div class="col-lg-4 col-md-12 d-flex justify-content-center">
         <img class="product_image" src="${product.picture}" alt="">
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 col-md-12 description_block">
         <div class="row pt-5">
             <div class="col-12 mb-2"><h3>${product.productname}</h3></div>
         <div class="col-12 mb-2">
