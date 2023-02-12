@@ -53,19 +53,20 @@ const editAccount = async () => {
         editBtn.disabled = false;
         return;
     }
-    
+
     const user = JSON.parse(localStorage.getItem('user'));
-    
+
     const data = {
         ...user,
         username: name,
         password
     };
-    
+
     const response = await fetch(`${url}/user`, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(data)
     });
@@ -79,7 +80,7 @@ const editAccount = async () => {
         const info = document.getElementById('inf');
         info.innerHTML = 'Une erreur est survenue, veuillez réessayer.'
     }
-    
+
     editBtn.disabled = false;
 };
 
