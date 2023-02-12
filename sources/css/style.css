@@ -78,12 +78,19 @@
   display: none;
 }
 
+
+
 @media (max-width: 976px) {
+
+  .admin_nav{
+    min-height: 56px;
+    margin-left: 10px;
+  }
   .description_block{
     text-align: center;
   }
   .navbar-brand {
-    text-align: center;
+    display: none;
   }
   .topbar {
     display: none;
@@ -96,12 +103,18 @@
   .logout_menu{
     display: block;
   }
+
+  .logout_menu ul li{
+    text-decoration: none;
+    list-style: none;
+  }
 }
 
 @media (min-width: 768px) {
   .product_card{
-    margin-top: 1rem;
+    margin-top: 1rem !important;
   }
+  
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
