@@ -74,6 +74,10 @@
   color: var(--color-primary);
 }
 
+.logout_menu{
+  display: none;
+}
+
 @media (max-width: 976px) {
   .description_block{
     text-align: center;
@@ -83,6 +87,14 @@
   }
   .topbar {
     display: none;
+  }
+
+  .logout_btn{
+    display: none;
+  }
+
+  .logout_menu{
+    display: block;
   }
 }
 
