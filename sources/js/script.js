@@ -4,7 +4,7 @@ const isProd = true;
 const baseUrl = isProd ? "/SportPlusJavaFront" : "";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const authenticated = localStorage.getItem("user") ? ? false;
+    const authenticated = localStorage.getItem("user") ?? false;
     switch (true) {
         case window.location.pathname.includes(`${baseUrl}/logout`):
         case authenticated === false && !(window.location.pathname.includes(`${baseUrl}/connection`) || window.location.pathname.includes(`${baseUrl}/inscription`)):
