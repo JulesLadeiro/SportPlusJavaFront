@@ -248,10 +248,6 @@ const editMyProduct = async (id) => {
             productprice,
             productimg
         };
-        if (productimg) {
-            productimg = await toBase64(productimg);
-            dataToPost.picture = productimg;
-        };
 
         const resCatalogue = await fetch(`${url}/catalogue`, {
             method: 'GET'
@@ -260,7 +256,13 @@ const editMyProduct = async (id) => {
         const catalogues = await resCatalogue.json();
         const catalogue = catalogues.filter(catalogue => catalogue.userid == JSON.parse(localStorage.getItem('user')).id)[0];
 
+        dataToPost.picture = catalogue.picture;
         dataToPost.catalogueid = catalogue.id;
+
+        if (productimg) {
+            productimg = await toBase64(productimg);
+            dataToPost.picture = productimg;
+        };
 
         const res = await fetch(`${url}/product/${id}`, {
             method: 'UPDATE',
