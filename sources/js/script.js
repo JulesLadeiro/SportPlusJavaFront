@@ -4,11 +4,11 @@ const isProd = true;
 const baseUrl = isProd ? "/SportPlusJavaFront" : "";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const authenticated = localStorage.getItem("user") ?? false;
+    const authenticated = localStorage.getItem("user") ? ? false;
     switch (true) {
         case window.location.pathname.includes(`${baseUrl}/logout`):
         case authenticated === false && !(window.location.pathname.includes(`${baseUrl}/connection`) || window.location.pathname.includes(`${baseUrl}/inscription`)):
-            console.log("redirect to connection");    
+            console.log("redirect to connection");
             window.location.href = `${baseUrl}/connection`;
             break;
         case window.location.pathname.includes(`${baseUrl}/connection`) || window.location.pathname.includes(`${baseUrl}/inscription`):
@@ -173,6 +173,17 @@ const createMyProductInt = () => {
                 <input type="text" class="form-control" id="signupUsername" placeholder="Username"
                     required />
             </div>
+            <div class="col-12">             
+                <input class="form-control" type="file" id="formFile">            
+            </div>
+            <div class="col-12">             
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Selectionner le catalogue ...</option>
+                // Boucle for des shop dispo
+                <option value="1">One</option>                
+            </select>            
+            </div>
+
         </div>
         <button onclick="signup()" id="signupButton" class="w-100 btn btn-primary btn-lg mt-3">
             Créer
