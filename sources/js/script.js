@@ -1,6 +1,6 @@
-// const url = "http://localhost:8080"; // local
-const url = "https://sportplus.alwaysdata.net"; // prod
-const isProd = true;
+const url = "http://localhost:8080"; // local
+// const url = "https://sportplus.alwaysdata.net"; // prod
+const isProd = false;
 const baseUrl = isProd ? "/SportPlusJavaFront" : "";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,7 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
         case window.location.pathname.includes(`${baseUrl}/productpage`):
             loadProduct();
             break;
+        case window.location.pathname.includes(`${baseUrl}/admin`):
+            checkStoreStatus();
+            break;
+        case window.location.pathname.includes(`${baseUrl}/account`):
+            checkStoreStatus();
+            break;
         case window.location.pathname.includes(`${baseUrl}/addprod`):
+            checkStoreStatus();
             loadMyProduct();
             break;
         case window.location.pathname.includes(`${baseUrl}/index`) || window.location.pathname == `${baseUrl}/`:
@@ -82,7 +89,35 @@ const loadProduct = async () => {
             <div class="col-12"><h5>${product.price} €</h5> </div>
         </div>
     </div>`;
-}
+};
+
+const checkStoreStatus = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user.role === "CLIENT") {
+        const div = document.getElementById('store');
+        div.innerHTML = `<h6
+            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
+            <span>Gestion du Store</span>
+            <a class="link-secondary" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle" class="align-text-bottom"></span>
+            </a>
+        </h6>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index">
+                    <span data-feather="home" class="align-text-bottom"></span>
+                    Catalogues
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="addprod">
+                    <span data-feather="file" class="align-text-bottom"></span>
+                    Gestion de produit
+                </a>
+            </li>
+        </ul>`;
+    }
+};
 
 const loadMyProduct = async () => {
     const response = await fetch(`${url}/product`);
@@ -94,7 +129,7 @@ const loadMyProduct = async () => {
     productDiv.innerHTML = "";
 
     products.forEach(product => {
-        productDiv.innerHTML = `<tr>
+        productDiv.innerHTML += `<tr>
             <th scope="row">${product.id}</th>
             <td>${product.productname}</td>
             <td>${product.description}</td>
@@ -118,48 +153,44 @@ const editMyProductInt = async (productId) => {
         <h1 class="h3 mb-3 fw-normal">Modification de produit</h1>
         <div class="row g-3">
             <div class="col-12">
-            <div class="input-group has-validation">                               
-                <input
-                type="text"
-                class="form-control"
-                id="productname"
-                placeholder="Nom du produit"
-                value="${product.productname}"
-                required
-                />
+                <div class="input-group has-validation">                               
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="productname"
+                    placeholder="Nom du produit"
+                    value="${product.productname}"
+                    required
+                    />
+                </div>
             </div>
+            <div class="col-12">
+                <div class="input-group has-validation">                               
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="productdescription"
+                    placeholder="Description du produit"
+                    value="${product.description}"
+                    required
+                    />
+                </div>
             </div>
             <div class="col-12">
             <input
             type="number"
             class="form-control"
-            id="price"
+            id="productprice"
             placeholder="prix"
             value="${product.price}"
             required
             />
             </div>
-            <div class="col-12">
-            <input
-            type="text"
-            class="form-control"
-            id="signupUsername"
-            placeholder="Username"
-            required
-            />
-            </div>
             <div class="col-12">             
-                <input class="form-control" type="file" id="formFile">            
-            </div>
-            <div class="col-12">             
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Selectionner le catalogue ...</option>
-                // Boucle for des shop dispo
-                <option value="1">One</option>                
-            </select>            
+                <input class="form-control" type="file" id="productimg">            
             </div>
         </div>
-        <button onclick="signup()" id="signupButton" class="w-100 btn btn-primary btn-lg mt-3">
+        <button onclick="editMyProduct(${productId})" id="editMyProductButton" class="w-100 btn btn-primary btn-lg mt-3">
             Modifier
         </button>
     </div>`;
@@ -177,39 +208,123 @@ const createMyProductInt = () => {
                 </div>
             </div>
             <div class="col-12">
-                <input type="text" class="form-control" id="price" placeholder="prix" required />
+                <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="productdescription"
+                        placeholder="Description du produit" required />
+                </div>
             </div>
             <div class="col-12">
-                <input type="text" class="form-control" id="signupUsername" placeholder="Username"
-                    required />
+                <input type="number" class="form-control" id="productprice" placeholder="Prix" required />
             </div>
             <div class="col-12">             
-                <input class="form-control" type="file" id="formFile">            
+                <input class="form-control" type="file" id="productimg">            
             </div>
-            <div class="col-12">             
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Selectionner le catalogue ...</option>
-                // Boucle for des shop dispo
-                <option value="1">One</option>                
-            </select>            
-            </div>
-
         </div>
-        <button onclick="signup()" id="signupButton" class="w-100 btn btn-primary btn-lg mt-3">
+        <button onclick="createMyProduct()" id="productCreationButton" class="w-100 btn btn-primary btn-lg mt-3">
             Créer
         </button>
     </div>`;
 };
 
-const editMyProduct = async () => {
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
 
+const editMyProduct = async (id) => {
+    const div = document.getElementById('crud');
+    const productname = document.getElementById('productname').value;
+    const productdescription = document.getElementById('productdescription').value;
+    const productprice = document.getElementById('productprice').value;
+    let productimg = document.querySelector('#productimg')?.files?.[0] ?? false;
+
+    try {
+        div.innerHTML = 'Chargement...';
+        let dataToPost = {
+            productname,
+            productdescription,
+            productprice,
+            productimg
+        };
+        if (productimg) {
+            productimg = await toBase64(productimg);
+            dataToPost.picture = productimg;
+        };
+
+        const resCatalogue = await fetch(`${url}/catalogue`, {
+            method: 'GET'
+        });
+
+        const catalogues = await resCatalogue.json();
+        const catalogue = catalogues.filter(catalogue => catalogue.userid == JSON.parse(localStorage.getItem('user')).id)[0];
+
+        dataToPost.catalogueid = catalogue.id;
+
+        const res = await fetch(`${url}/product/${id}`, {
+            method: 'UPDATE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataToPost)
+        });
+
+        if (res.status == 500) throw new Error('Erreur... Votre image peut être trop grande');
+        if (![200, 201].includes(res.status)) throw new Error('Erreur lors de la création du produit...');
+
+        div.innerHTML = 'Produit mis à jour avec succès';
+        await loadMyProduct();
+    } catch (err) {
+        console.log(err);
+        div.innerHTML = typeof error == 'string' ? error : 'Erreur...';
+
+    }
 };
 
 const createMyProduct = async () => {
+    const div = document.getElementById('crud');
+    const productname = document.getElementById('productname').value;
+    const productdescription = document.getElementById('productdescription').value;
+    const productprice = document.getElementById('productprice').value;
+    let productimg = document.querySelector('#productimg').files[0];
 
+    try {
+        div.innerHTML = 'Chargement...';
+        productimg = await toBase64(productimg);
+
+        const resCatalogue = await fetch(`${url}/catalogue`, {
+            method: 'GET'
+        });
+
+        const catalogues = await resCatalogue.json();
+        const catalogue = catalogues.filter(catalogue => catalogue.userid == JSON.parse(localStorage.getItem('user')).id)[0];
+
+        const res = await fetch(`${url}/product`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                productname,
+                description: productdescription,
+                price: productprice,
+                picture: productimg,
+                catalogueid: catalogue.id
+            })
+        });
+
+        if (res.status == 500) throw new Error('Erreur... Votre image peut être trop grande');
+        if (![200, 201].includes(res.status)) throw new Error('Erreur lors de la création du produit...');
+
+        div.innerHTML = 'Crée avec succès !';
+        await loadMyProduct();
+    } catch (error) {
+        div.innerHTML = typeof error == 'string' ? error : 'Erreur...';
+    }
 };
 
-const deleteMyProduct = async () => {
+const deleteMyProduct = async (id) => {
     const productDiv = document.getElementById('prodTable');
     productDiv.innerHTML = "Chargement...";
 
@@ -224,6 +339,7 @@ const signup = async () => {
     const username = document.getElementById('signupUsername').value;
     const password = document.getElementById('signupPassword').value;
     const email = document.getElementById('signupEmail').value;
+    const role = document.getElementById('roleSelect').value;
 
     document.getElementById('signupButton').disabled = true;
 
@@ -235,7 +351,8 @@ const signup = async () => {
         body: JSON.stringify({
             username,
             password,
-            email
+            email,
+            role
         })
     });
 
