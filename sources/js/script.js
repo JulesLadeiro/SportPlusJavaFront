@@ -148,16 +148,6 @@ const editMyProductInt = async (productId) => {
             required
             />
             </div>
-            <div class="col-12">             
-                <input class="form-control" type="file" id="formFile">            
-            </div>
-            <div class="col-12">             
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Selectionner le catalogue ...</option>
-                // Boucle for des shop dispo
-                <option value="1">One</option>                
-            </select>            
-            </div>
         </div>
         <button onclick="signup()" id="signupButton" class="w-100 btn btn-primary btn-lg mt-3">
             Modifier
